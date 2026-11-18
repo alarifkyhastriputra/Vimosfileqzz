@@ -12,14 +12,13 @@ import { getDatabase } from 'firebase/database';
 import { getAnalytics, isSupported } from 'firebase/analytics';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyA3SVbGNE34805jokZxFz6kWlY7do4i4qc",
-  authDomain: "chiutchiyu.firebaseapp.com",
-  databaseURL: "https://chiutchiyu-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "chiutchiyu",
-  storageBucket: "chiutchiyu.firebasestorage.app",
-  messagingSenderId: "685811847893",
-  appId: "1:685811847893:web:76f1173a63cb8de427085c",
-  measurementId: "G-GN6PGS2L7R"
+  apiKey: "AIzaSyABUhYqmJXo16n13cAClbSQInkFWzTjl-A",
+  authDomain: "vimos-1ccb7.firebaseapp.com",
+  databaseURL: "https://vimos-1ccb7-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "vimos-1ccb7",
+  storageBucket: "vimos-1ccb7.firebasestorage.app",
+  messagingSenderId: "601032053838",
+  appId: "1:601032053838:web:bc688de00cfa1e28d21f1f"
 };
 
 // Initialize Firebase
@@ -44,7 +43,11 @@ export let analytics: any = null;
 if (typeof window !== 'undefined') {
   isSupported().then((supported) => {
     if (supported) {
-      analytics = getAnalytics(app);
+      try {
+        analytics = getAnalytics(app);
+      } catch {
+        // Ignore if measurementId is not configured
+      }
     }
   }).catch(() => {
     // Graceful fallback if analytics is blocked or unsupported in context
